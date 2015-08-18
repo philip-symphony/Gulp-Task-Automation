@@ -1,0 +1,33 @@
+//==============================================================================
+// Global Variables
+//==============================================================================
+
+//------------------------------------------------------------------------------
+// Font Stacks
+//------------------------------------------------------------------------------
+$f-sans:    Helvetica, Arial, sans-serif;
+$f-serif:   Georgia, serif;
+
+$droid-serif:   'Droid Serif', $f-serif;
+$lato:          'Lato', $f-sans;
+$inconsolata:   'Inconsolata', monospace;
+
+//------------------------------------------------------------------------------
+// Colors
+// http://chir.ag/projects/name-that-color
+//------------------------------------------------------------------------------
+$brand-green: #1fa198;
+
+// Background colors
+$bg-black:    #000;
+$bg-white:    #fff;
+
+// Text colors
+$t-black:       #888;
+$t-inverse:     #ddd;
+$t-brand-blue:  #7ccdc7;
+
+$link-blue:     $t-brand-blue;
+
+// Border colors
+$border-mercury: #ccc;

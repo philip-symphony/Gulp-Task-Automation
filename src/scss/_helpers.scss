@@ -1,0 +1,134 @@
+//==============================================================================
+// Global Helpers
+//==============================================================================
+
+//------------------------------------------------------------------------------
+// Clearfix
+//------------------------------------------------------------------------------
+%clearfix {
+    &:after {
+        clear: both;
+        content: '';
+        display: block;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Image Replacement
+//------------------------------------------------------------------------------
+%ir {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    text-indent: 100%;
+    width: 0;
+}
+
+//------------------------------------------------------------------------------
+// Extended background
+// Use to create a background that extends beyond the bounds of a parent element container
+//------------------------------------------------------------------------------
+@mixin bg-extended($color) {
+    clear: both;
+    position: relative;
+    &:before {
+        background-color: $color;
+        content: '';
+        margin-left: -200%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 400%;
+    }
+    // All child elements need position: relative. Uncomment below or add manually
+    > * {
+        // position: relative;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Retina
+//------------------------------------------------------------------------------
+$mq-retina: '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx)';
+
+@mixin retina {
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dppx) {
+        @content;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Custom Sprites
+//------------------------------------------------------------------------------
+%custom-sprite {
+    background-image: url(../images/custom-sprites.png);
+}
+// render retina sprite file at 200%
+// background-size needs to be updated whenever the sprite sheet changes size
+// retina background size is 50% of actual sprite sheet dimensions
+@media #{$mq-retina} {
+    %custom-sprite {
+        background-image: url(../images/custom-sprites@2x.png);
+        background-position: -1px -10px;
+        background-size: 150px 200px;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Branded Lists
+//------------------------------------------------------------------------------
+%ul-branded {
+    list-style: none;
+    li {
+        margin-left: 0;
+        &:before {
+            content: '\2022';
+            color: $link-blue;
+            margin-right: 5px;
+        }
+    }
+}
+%dl-branded {
+    list-style: none;
+    dt {
+        margin-left: 0;
+        &:before {
+            content: '\2022';
+            color: $link-blue;
+            margin-right: 5px;
+        }
+    }
+    dd {
+        margin-left: 13px;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Custom HR
+//------------------------------------------------------------------------------
+@mixin hr-dark {
+    border-top: 1px solid #272727;
+    border-bottom: 1px solid #181818;
+}
+@mixin hr-light {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid $border-mercury;
+}
+
+//------------------------------------------------------------------------------
+// Vertical Separator
+//------------------------------------------------------------------------------
+%separator {
+    position: relative;
+    &:after {
+        background-color: #e5e5e5;
+        box-shadow: 1px 1px 1px $bg-white;
+        content: " ";
+        height: auto;
+        width: 1px;
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+    }
+}
