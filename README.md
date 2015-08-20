@@ -5,8 +5,17 @@
 These need to be installed one time to be available globally on your system.
 
 - node - [download installer](http://nodejs.org/)
-- gulp - `npm install -g gulp`
+- gulp - `npm install -g gulp`  **Do NOT use sudo!**
 - sass - `sudo gem install sass`
+
+If you have an npm permissions issue at this step, run the following commands (`whoami` is your username):
+```
+sudo chown -R whoami /usr/local
+sudo chown -R whoami ~/.npm
+sudo chown -R whoami /usr/local/lib/node_modules
+```
+
+More information about npm permissions can be found in the [npm documentation](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
 
 ### Initial setup
 (Only one team member needs to do this setup)
@@ -41,15 +50,6 @@ For this example, the file structure looks like this:
 `$ npm install --save-dev gulp browser-sync gulp-autoprefixer gulp-cached gulp-concat gulp-filter gulp-imagemin gulp-jshint gulp-notify gulp-plumber gulp-rename gulp-sass gulp-sourcemaps gulp-uglify serve-static`
 
 **Do NOT use sudo!**
-
-If you have an npm permissions issue at this step, run the following commands (`whoami` is your username):
-```
-sudo chown -R `whoami` /usr/local
-sudo chown -R `whoami` ~/.npm
-sudo chown -R `whoami` /usr/local/lib/node_modules
-```
-
-More information about npm permissions can be found in the [npm documentation](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
 
 Here is an example of what the DevDependencies section will look like in your package.json file:
 
