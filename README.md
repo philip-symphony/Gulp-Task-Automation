@@ -77,7 +77,17 @@ Here is an example of what the DevDependencies section will look like in your pa
 
 **4. Set file paths and browser support in `gulpfile.js`**
 
-All paths are relative to `gulpfile.js`. Autoprefixer browser support must be precise or the task will fail. Refer to the [documentation](https://github.com/ai/browserslist) when adding browsers.
+You can copy the gulpfile.js included in this repo. All paths are relative to `gulpfile.js`.
+
+* Update `devUrl`
+* Update 'Local file paths' if you did not use `src` and `app`
+* Update Browsersync Rewrite Rules
+
+The current Symphony Commerce workflow (as of Aug 2015) is to add a stylesheet via AWS S3. We use a RegEx to search for the url path to this specific file. And we use middleware to serve up a replacement file from your local machine.
+
+* Autoprefixer browsers support
+
+Autoprefixer browser support must be precise or the task will fail. Refer to the [documentation](https://github.com/ai/browserslist) when adding browsers.
 
 **5. Update `.gitignore`**
 
