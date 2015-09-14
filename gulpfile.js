@@ -124,16 +124,33 @@ gulp.task('scripts', function() {
     // Cache
     .pipe(cache('scripts'))
 
-    // JSHint & compile
-    // TO DO: fix error reporting
-    .pipe(jshint())
-    .pipe(jshint.reporter('fail'))
-    .on('error', notify.onError ({
-        title: 'Error!',
-        message: 'Scripts task failed'
-    }))
-
     // Compile
+    .pipe(jshint())
+
+    // Error Handling
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'))
+
+    .on('error', function onError(error) {
+        var errorTitle = '[' + error.plugin + ']',
+            errorString = error.message;
+
+        if (error.lineNumber) {
+            errorString += ' on line ' + error.lineNumber;
+        }
+        if (error.fileName) {
+            errorString += ' in ' + error.fileName;
+        }
+
+        notify.onError({
+            title:    errorTitle,
+            message:  errorString,
+            sound:    "Beep"
+        })(error);
+        this.emit('end');
+    })
+
+    // Concat
     .pipe(concat('main.js'))
     .pipe(gulp.dest(dest + '/js'))
 
@@ -186,6 +203,6 @@ gulp.task('watch', function() {
 //------------------------------------------------------------------------------
 gulp.task('bsync', ['browsersync'], function() {
     gulp.watch(src + '/scss/**/*.scss', ['styles']);
-    gulp.watch(src + '/js/**/*.js', ['scripts', browsersync.reload]);
+    gulp.watch(src + '/js/**/*.js', ['scripts']);
     gulp.watch(src + '/images/**/*', ['images']);
 });
