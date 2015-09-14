@@ -54,7 +54,7 @@ gulp.task('browsersync', function() {
             {
                 match: new RegExp('https://s3.amazonaws.com/sneakpeeq-sites/example-site/styles/main.css'),
                 fn: function() {
-                    return 'main.css'
+                    return 'main.css';
                 }
             }
         ],
