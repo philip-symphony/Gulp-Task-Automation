@@ -6,17 +6,14 @@ var gulp = require('gulp');
 var autoprefixer    = require('gulp-autoprefixer'),
     browsersync     = require('browser-sync'),
     cache           = require('gulp-cached'),
-    concat          = require('gulp-concat'),
     filter          = require('gulp-filter'),
     imagemin        = require('gulp-imagemin'),
     jshint          = require('gulp-jshint'),
     notify          = require('gulp-notify'),
     plumber         = require('gulp-plumber'),
-    rename          = require('gulp-rename'),
     sass            = require('gulp-sass'),
     servestatic     = require('serve-static'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    uglify          = require('gulp-uglify');
+    sourcemaps      = require('gulp-sourcemaps');
 
 // -----------------------------------------------------------------------------
 // Configuration
@@ -139,15 +136,6 @@ gulp.task('scripts', function() {
         })(error);
         this.emit('end');
     })
-
-    // Concat
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest(dest + '/js'))
-
-    // Minify
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest(dest + '/js'))
 
     // Notification
     .pipe(notify({ message: 'Scripts task complete' }));
