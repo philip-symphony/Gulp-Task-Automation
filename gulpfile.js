@@ -121,9 +121,6 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
     return gulp.src(src + '/js/**/*.js')
 
-    // Cache
-    .pipe(cache('scripts'))
-
     // Compile
     .pipe(jshint())
 
@@ -131,16 +128,9 @@ gulp.task('scripts', function() {
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'))
 
-    .on('error', function onError(error) {
+    .on('error', function(error) {
         var errorTitle = '[' + error.plugin + ']',
             errorString = error.message;
-
-        if (error.lineNumber) {
-            errorString += ' on line ' + error.lineNumber;
-        }
-        if (error.fileName) {
-            errorString += ' in ' + error.fileName;
-        }
 
         notify.onError({
             title:    errorTitle,
