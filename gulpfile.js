@@ -20,7 +20,8 @@ var autoprefixer    = require('gulp-autoprefixer'),
 // -----------------------------------------------------------------------------
 
 // Development URL
-var devUrl = 'https://demo.example-site.com';
+var siteName    = 'example-site',
+    devUrl      = 'https://demo.example-site.com';
 
 // Local file paths
 var src     = 'src',
@@ -49,9 +50,9 @@ gulp.task('browsersync', function() {
         // Inject local files
         rewriteRules: [
             {
-                match: new RegExp('https://s3.amazonaws.com/sneakpeeq-sites/example-site/styles/main.css'),
+                match: new RegExp('https://d20b8ckvu6gb0w.cloudfront.net/' + siteName + '/styles/.*/.*' + siteName + '.css.gz'),
                 fn: function() {
-                    return 'main.css';
+                    return siteName + '.css';
                 }
             }
         ],
@@ -179,7 +180,7 @@ gulp.task('watch', function() {
 //------------------------------------------------------------------------------
 // Browser Sync task [bsync]
 //------------------------------------------------------------------------------
-gulp.task('bsync', ['browsersync'], function() {
+gulp.task('dev', ['browsersync'], function() {
     gulp.watch(src + '/scss/**/*.scss', ['styles']);
     gulp.watch(src + '/js/**/*.js', ['scripts']);
     gulp.watch(src + '/images/**/*', ['images']);
